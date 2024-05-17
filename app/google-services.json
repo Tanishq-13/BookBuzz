@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "450643105866",
+    "project_id": "bookbuzz-f31dd",
+    "storage_bucket": "bookbuzz-f31dd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:450643105866:android:878e8509da15d5757a2eb3",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCPQK0JBAFlqnrTeSKvoeZzylFnsJTNe4M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

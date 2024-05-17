@@ -1,0 +1,14 @@
+<!-- res/drawable/border_background.xml -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Background fill color -->
+    <item android:drawable="@android:color/transparent" />
+    <!-- Black border -->
+    <item>
+        <shape android:shape="rectangle">
+            <solid android:color="#000000" /> <!-- Fill color -->
+            <stroke
+                android:width="2dp"
+                android:color="#D3C8C8" /> <!-- Border color (black) -->
+        </shape>
+    </item>
+</layer-list>
