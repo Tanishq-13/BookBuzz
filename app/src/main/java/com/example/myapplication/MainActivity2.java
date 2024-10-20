@@ -1,14 +1,19 @@
 package com.example.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
+import androidx.fragment.app.Fragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
@@ -22,7 +27,7 @@ import java.util.concurrent.atomic.AtomicReference;
 
 public class MainActivity2 extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
+    /*private RecyclerView recyclerView;
     private BookAdapter bookAdapter;
     private List<Book> bookList;
     private List<String> documentIds;
@@ -121,8 +126,8 @@ public class MainActivity2 extends AppCompatActivity {
                 });
 
     }
-    */
-    private void fetchDataFromFirestore() {
+
+    /*private void fetchDataFromFirestore() {
         String email = UserUtil.getUserEmail();
         char firstChar = 0;
         if (email != null && email.length() > 0) {
@@ -147,7 +152,7 @@ public class MainActivity2 extends AppCompatActivity {
 
                             String documentId = documentSnapshot.getId();
                             Book book = documentSnapshot.toObject(Book.class);
-                            String semester = book.getSemester();   
+                            String semester = book.getSemester();
 
                             if (book.getSemester() != null && semester.equals(sem)) {
                                 // If the semester matches, add the book to the list
@@ -193,5 +198,46 @@ public class MainActivity2 extends AppCompatActivity {
                         Toast.makeText(MainActivity2.this, "Failed to fetch data: " + e.getMessage(), Toast.LENGTH_SHORT).show();
                     });
         }
+    }*/
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottomNavigationView);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                Fragment selectedFragment = null;
+                int option=0;
+                if(item.getItemId()==R.id.navigation_home){
+                    option=1;
+                }
+                else if(item.getItemId()==R.id.navigation_dashboard){
+                    option=2;
+                }
+                else{
+                    option=3;
+                }
+                switch (option) {
+                    case 1 :
+                        selectedFragment = new HomeFragment();
+                        break;
+                }
+
+                getSupportFragmentManager().beginTransaction().replace(R.id.frameLayout, selectedFragment).commit();
+                return true;
+            }
+        });
+
+        // Set default selection
+        bottomNavigationView.setSelectedItemId(R.id.navigation_home);
+    }
+    public void replaceFragment(Fragment fragment){
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction=fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.frameLayout,fragment);
+        fragmentTransaction.commit();
     }
 }

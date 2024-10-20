@@ -76,6 +76,7 @@ public class commentAdapter extends RecyclerView.Adapter<commentAdapter.CommentV
         private TextView textViewCommentText;
         private TextView textViewTimestamp;
         private RatingBar ratingBar;
+        private TextView rT;
 
         public CommentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -83,6 +84,7 @@ public class commentAdapter extends RecyclerView.Adapter<commentAdapter.CommentV
             textViewCommentText = itemView.findViewById(R.id.comment);
             textViewTimestamp = itemView.findViewById(R.id.time);
             ratingBar=itemView.findViewById(R.id.ratingBar);
+            rT=itemView.findViewById(R.id.reviewTitle);
         }
 
         public void bind(Comment comment) {
@@ -103,6 +105,7 @@ public class commentAdapter extends RecyclerView.Adapter<commentAdapter.CommentV
                         textViewUserId.setText("Failed to retrieve user");
                     });
             textViewCommentText.setText(comment.getCommentText());
+            rT.setText(comment.getReviewText());
             ratingBar.setRating(comment.getRating());
             if (comment.getTimestamp() != null) {
                 Timestamp timestamp = comment.getTimestamp();
