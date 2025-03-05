@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="@dimen/_150sdp"
+    android:orientation="vertical"
+    android:padding="@dimen/_8sdp"
+    android:layout_height="wrap_content">
+
+
+        <ImageView
+            android:id="@+id/bookImage"
+            android:layout_width="@dimen/_130sdp"
+            android:layout_height="@dimen/_130sdp"
+            android:src="@drawable/person_svgrepo_com"
+            app:tint="@color/black" />
+        <TextView
+            android:id="@+id/bookTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#000000"
+            android:textSize="@dimen/_12sdp"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:textStyle="bold"
+            android:fontFamily="@font/inter_semibold"
+            android:text="Introduction to Algorithms"/>
+        <TextView
+            android:id="@+id/bookRating"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="⭐ 3.8 "
+            android:textColor="#555555"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="@dimen/_12sdp" />
+<!--    <com.willy.ratingbar.ScaleRatingBar -->
+<!--        android:id="@+id/simpleRatingBar"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_marginEnd="@dimen/_12sdp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:srb_clearRatingEnabled="true"-->
+<!--        app:srb_clickable="true"-->
+<!--        app:srb_isIndicator="false"-->
+<!--        app:srb_minimumStars="1"-->
+<!--        app:srb_numStars="5"-->
+<!--        app:srb_rating="2"-->
+<!--        app:srb_scrollable="true"-->
+<!--        app:srb_starHeight="@dimen/_14sdp"-->
+<!--        app:srb_starPadding="2dp"-->
+<!--        app:srb_starWidth="@dimen/_14sdp"-->
+<!--        app:srb_stepSize="0.5">-->
+
+<!--    </com.willy.ratingbar.ScaleRatingBar>-->
+
+
+</LinearLayout>
