@@ -1,13 +1,16 @@
 package com.example.myapplication.launch_page;
 
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.Toast;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -15,14 +18,11 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
-import com.example.myapplication.BookDetails.BookDetailsActivity;
 import com.example.myapplication.R;
 import com.example.myapplication.launch_page.adapter.BookAdapter;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -31,74 +31,64 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-public class launch_page extends AppCompatActivity {
+public class launch_page extends Fragment {
 
-    private RecyclerView recyclerView;
-    private BookAdapter bookAdapter;
     private RecyclerView recyclerViewSemester, recyclerViewCSE, recyclerViewAll;
-    private com.example.myapplication.launch_page.adapter.BookAdapter bookAdapterSemester, bookAdapterCSE, bookAdapterAll;
+    private BookAdapter bookAdapterSemester, bookAdapterCSE, bookAdapterAll;
     private List<Book> booksSemester, booksCSE, booksAll;
     private String semester;
     private String field = "Computer Science";  // Change as per user field
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
     private RequestQueue requestQueue;
-    private List<Book> bookList;
-    private List<String> documentIds;
     private String sem = null;
     Calendar calendar = Calendar.getInstance();
 
     int year = calendar.get(Calendar.YEAR);
     int month = calendar.get(Calendar.MONTH) + 1; // Month is zero-based, so add 1
-    int day = calendar.get(Calendar.DAY_OF_MONTH);
     private FirebaseFirestore firestore;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_launchpage);
-        //get email from user table in mysql and calculate sem and branch
-        requestQueue = Volley.newRequestQueue(this);
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_launchhome, container, false);
 
-        recyclerViewSemester = findViewById(R.id.recyclerViewBooks);
-        recyclerViewCSE = findViewById(R.id.recyclerViewBooks2);
-        recyclerViewAll = findViewById(R.id.recyclerViewBooks21);
+        requestQueue = Volley.newRequestQueue(requireContext());
+
+        recyclerViewSemester = view.findViewById(R.id.recyclerViewBooks);
+        recyclerViewCSE = view.findViewById(R.id.recyclerViewBooks2);
+        recyclerViewAll = view.findViewById(R.id.recyclerViewBooks21);
 
         booksSemester = new ArrayList<>();
         booksCSE = new ArrayList<>();
         booksAll = new ArrayList<>();
 
-        bookAdapterSemester = new BookAdapter(booksSemester,this);
-        bookAdapterCSE = new BookAdapter(booksCSE,this);
-        bookAdapterAll = new BookAdapter(booksAll,this);
+        bookAdapterSemester = new BookAdapter(booksSemester, getContext());
+        bookAdapterCSE = new BookAdapter(booksCSE, getContext());
+        bookAdapterAll = new BookAdapter(booksAll, getContext());
 
-        recyclerViewSemester.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerViewCSE.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recyclerViewAll.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewSemester.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewCSE.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewAll.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
 
         recyclerViewSemester.setAdapter(bookAdapterSemester);
         recyclerViewCSE.setAdapter(bookAdapterCSE);
         recyclerViewAll.setAdapter(bookAdapterAll);
 
         fetchBooks();
+
+        return view;
     }
-    private String calcSem(String email,int m,int y) {
-        String t="";
-        int c=2000+(email.charAt(0)-'0')*10+(email.charAt(1)-'0');
-        int yr=y-c;
-        int s;
-        if(m>=6){
-            s=yr*2+1;
-        }
-        else{
-            s=yr*2;
-        }
-        t=Integer.toString(s);
-        return t;
+
+    private String calcSem(String email, int m, int y) {
+        int c = 2000 + (email.charAt(0) - '0') * 10 + (email.charAt(1) - '0');
+        int yr = y - c;
+        int s = (m >= 6) ? yr * 2 + 1 : yr * 2;
+        return Integer.toString(s);
     }
 
     private void fetchBooks() {
-        String url = "http://10.22.2.208:9899/books/all";  // Change this to your API URL
+        String url = "http://10.22.2.148:9899/books/all";  // Change this to your API URL
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -118,7 +108,7 @@ public class launch_page extends AppCompatActivity {
                                         jsonObject.getString("semester"),
                                         jsonObject.getString("field")
                                 );
-                                Log.d("check img",jsonObject.getString("imageUrl"));
+                                Log.d("check img", jsonObject.getString("imageUrl"));
                                 booksAll.add(book);
 
                                 if (book.getSemester().equals(semester)) {

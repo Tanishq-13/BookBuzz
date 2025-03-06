@@ -2,7 +2,7 @@
 <network-security-config>
     <domain-config cleartextTrafficPermitted="true">
         <domain includeSubdomains="true">localhost</domain>
-        <domain includeSubdomains="true">10.22.0.126</domain>
+        <domain includeSubdomains="true">10.22.2.148</domain>
         <domain includeSubdomains="true">10.22.2.208</domain>
         <domain includeSubdomains="true">firebasestorage.googleapis.com</domain>
     </domain-config>

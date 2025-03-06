@@ -33,7 +33,7 @@
             android:name=".BookDetails.BookDetailsActivity"
             android:exported="false" />
         <activity
-            android:name=".launch_page.launch_page"
+            android:name=".launch_page.HomeActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
