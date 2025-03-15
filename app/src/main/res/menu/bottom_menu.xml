@@ -6,7 +6,7 @@
         android:id="@+id/home">
     </item>
     <item
-        android:title="Community"
+        android:title="Upload"
         android:icon="@drawable/blocks_svgrepo_com"
         android:id="@+id/slideshare">
     </item>

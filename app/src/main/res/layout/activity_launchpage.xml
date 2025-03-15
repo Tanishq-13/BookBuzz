@@ -89,7 +89,7 @@
         android:layout_height="wrap_content"
         android:background="@color/white"
         app:itemHorizontalTranslationEnabled="true"
-        app:itemIconSize="@dimen/_25sdp"
+        app:itemIconSize="@dimen/_22sdp"
         app:itemActiveIndicatorStyle="@drawable/item_tint_selector"
         app:itemIconTint="@drawable/item_tint_selector"
         app:itemTextColor="@drawable/item_tint_selector"
