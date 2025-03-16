@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="@id/view"
         app:layout_constraintBottom_toTopOf="@id/view">
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/_4sdp"
@@ -44,7 +44,7 @@
             app:layout_constraintStart_toStartOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/editTextText" />
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/textView9"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text=" Login"
@@ -178,7 +178,7 @@
         app:layout_constraintStart_toStartOf="@+id/view"
         app:layout_constraintTop_toBottomOf="@+id/editTextText" />
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/textView30"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:visibility="gone"
