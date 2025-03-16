@@ -27,10 +27,11 @@
 
                 <ImageView
                     android:id="@+id/topImageView"
-                    android:layout_width="match_parent"
+                    android:layout_width="@dimen/_200sdp"
+                    android:layout_gravity="center_horizontal"
                     android:layout_height="250dp"
                     android:scaleType="centerCrop"
-                    tools:src="@tools:sample/avatars" />
+                    android:src="@drawable/book_svgrepo_com" />
                 />
             </FrameLayout>
 
@@ -268,18 +269,14 @@
                     <!-- Price -->
 
 
-
-
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/prchs"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
                         android:background="@drawable/livedemobg"
                         android:text="Download pdf"
-                        android:textColor="@color/black"
-                        android:layout_marginTop="@dimen/_12sdp"/>
-
-
+                        android:textColor="@color/black" />
 
                     <TextView
                         android:id="@+id/Desc"

@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Background (Gray) -->
+
+
     <!-- Shadow -->
     <item android:right="8dp" android:left="8dp" android:top="8dp" android:bottom="8dp">
         <shape android:shape="rectangle">
-            <solid android:color="#B3B3B3" /> <!-- Shadow color (light gray) -->
+            <solid android:color="#B3B3B3" /> <!-- Shadow color (darker gray) -->
             <corners android:radius="30dp" />
         </shape>
     </item>
 
-    <!-- White Background -->
+    <!-- White Foreground with Gray Border -->
     <item>
         <shape android:shape="rectangle">
-
             <solid android:color="@android:color/white" />
+            <stroke android:width="2dp" android:color="#A9A9A9" /> <!-- Gray border -->
             <corners android:radius="30dp" />
         </shape>
     </item>
+
 </layer-list>

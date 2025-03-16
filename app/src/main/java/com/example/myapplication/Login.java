@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,23 +22,14 @@ public class Login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        Button myButton = findViewById(R.id.button);
+        LinearLayout myButton = findViewById(R.id.donthaveaccount);
         TextView memail=findViewById(R.id.textView2);
         TextView pwd=findViewById(R.id.editTextTextEmailAddress);
         Button login=findViewById(R.id.login);
         FirebaseAuth fauth=FirebaseAuth.getInstance();
-        Button login_teacher=findViewById(R.id.button4);
+//        Button login_teacher=findViewById(R.id.button4);
 
         myButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Define the actions to be performed when the button is clicked
-                // For example, show a toast message
-                Intent intent = new Intent(Login.this, authentication.class);
-                startActivity(intent);
-            }
-        });
-        login_teacher.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 // Define the actions to be performed when the button is clicked

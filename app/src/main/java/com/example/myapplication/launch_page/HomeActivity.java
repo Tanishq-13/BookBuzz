@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.example.myapplication.R;
+import com.example.myapplication.launch_page.fragmentss.UploadFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class HomeActivity extends AppCompatActivity {
@@ -26,16 +27,19 @@ public class HomeActivity extends AppCompatActivity {
         bottomNavigationView.setOnItemSelectedListener(item -> {
             Fragment selectedFragment = null;
 
-//            if (item.getItemId() == R.id.ho) {
-//                selectedFragment = new LaunchPageFragment();
-//            }
+            if (item.getItemId() == R.id.slideshare) {
+                selectedFragment = new UploadFragment();
+            }
+            if (item.getItemId() == R.id.home) {
+                selectedFragment = new launch_page();
+            }
 //            // Add other fragments for different tabs if needed
 //
-//            if (selectedFragment != null) {
-//                getSupportFragmentManager().beginTransaction()
-//                        .replace(R.id.fragment_container, selectedFragment)
-//                        .commit();
-//            }
+            if (selectedFragment != null) {
+                getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_cont, selectedFragment)
+                        .commit();
+            }
             return true;
         });
     }

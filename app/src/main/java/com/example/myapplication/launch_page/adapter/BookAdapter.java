@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.myapplication.Book_OverView;
 import com.example.myapplication.R;
 import com.example.myapplication.launch_page.Book;
@@ -47,7 +48,15 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 
         String rating = String.format("⭐ %.1f", book.getAverageRating());
         Log.d("check img and rev",book.getImageUrl()+" "+book.getAverageRating());
-        Glide.with(holder.itemView.getContext()).asBitmap().load(book.getImageUrl()).into(holder.image);
+        Glide.with(holder.itemView.getContext())
+                .load(book.getImageUrl())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .dontTransform() // Avoids unnecessary transformations
+                .dontAnimate() // Prevents animations that may cause issues
+                .placeholder(R.drawable.book_svgrepo_com) // Temporary image while loading
+                .error(R.drawable.book_svgrepo_com) // Shows error image if load fails
+                .into(holder.image);
+
         holder.itemView.setOnClickListener(view -> {
             Intent intent = new Intent(context, Book_OverView.class);
             intent.putExtra("book_id", book.getId());

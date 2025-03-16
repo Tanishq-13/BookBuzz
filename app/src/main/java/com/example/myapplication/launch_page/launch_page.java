@@ -88,7 +88,8 @@ public class launch_page extends Fragment {
     }
 
     private void fetchBooks() {
-        String url = "http://10.22.2.148:9899/books/all";  // Change this to your API URL
+        String url = "http://192.168.29.159:9899/books/all";
+        // Change this to your API URL
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONArray>() {
@@ -98,16 +99,21 @@ public class launch_page extends Fragment {
                             for (int i = 0; i < response.length(); i++) {
                                 JSONObject jsonObject = response.getJSONObject(i);
                                 Book book = new Book(
-                                        jsonObject.getInt("id"),
-                                        jsonObject.getString("title"),
-                                        jsonObject.getString("author"),
-                                        jsonObject.optString("imageUrl", ""),
-                                        jsonObject.getDouble("averageRating"),
-                                        jsonObject.getInt("numberOfReviews"),
-                                        jsonObject.getString("isbn"),
-                                        jsonObject.getString("semester"),
-                                        jsonObject.getString("field")
+                                        jsonObject.optInt("id", -1),  // Assuming ID should not be null, using -1 as a fallback
+                                        jsonObject.optString("title", null),
+                                        jsonObject.optString("author", null),
+                                        jsonObject.optString("imageUrl", null),
+                                        jsonObject.has("averageRating") ? jsonObject.optDouble("averageRating") : null,
+                                        jsonObject.has("numberOfReviews") ? jsonObject.optInt("numberOfReviews") : null,
+                                        jsonObject.optString("isbn", null),
+                                        jsonObject.optString("semester", null),
+                                        jsonObject.optString("field", null),
+                                        jsonObject.optString("detailedDescription", null),
+                                        jsonObject.optString("smallDescription", null),
+                                        jsonObject.optString("pdfUrl", null)
                                 );
+                                Log.d("JSON_RESPONSE", jsonObject.toString());
+
                                 Log.d("check img", jsonObject.getString("imageUrl"));
                                 booksAll.add(book);
 
@@ -133,9 +139,20 @@ public class launch_page extends Fragment {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         Log.e("FetchBooks", "Volley Error: " + error.getMessage());
+                        // Log network response details if available
+                        if (error.networkResponse != null) {
+                            String responseBody = new String(error.networkResponse.data);
+                            Log.e("FetchBooks", "Response Code: " + error.networkResponse.statusCode);
+                            Log.e("FetchBooks", "Response Data: " + responseBody);
+                        } else {
+                            // Log a more general error message if no response is available
+                            Log.e("FetchBooks", "Error: " + error.toString());
+                        }
                     }
-                });
+                }
+        );
 
-        requestQueue.add(jsonArrayRequest);
+
+                requestQueue.add(jsonArrayRequest);
     }
 }

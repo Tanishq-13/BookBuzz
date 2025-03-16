@@ -1,15 +1,19 @@
 package com.example.myapplication;
 
+import static androidx.core.content.ContentProviderCompat.requireContext;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,7 +41,9 @@ public class Book_OverView extends AppCompatActivity {
     private RecyclerView recyclerView;
     private OverviewAdapter adapter;
     private EditText revh,revb;
-    private TextView booktitle,bookauth,field,semester,coursert;
+    private Button prchs;
+    private TextView booktitle,bookauth,field,semester,coursert,bookdesc,bookdetdesc;
+    private ImageView img;
     private Book book;
     //temp variables for api testing
     private String studentName="Tanishq Gupta",email="22351@iiitu.ac.in";
@@ -52,14 +58,20 @@ public class Book_OverView extends AppCompatActivity {
         setContentView(R.layout.activity_book_details);
         book= (Book) getIntent().getSerializableExtra("book");
         booktitle=findViewById(R.id.courseTitle);
+        img=findViewById(R.id.topImageView);
         bookauth=findViewById(R.id.bookauth);
+        bookdetdesc=findViewById(R.id.courseDescription1);
+        bookdesc=findViewById(R.id.courseDescription);
         field=findViewById(R.id.subjectName);
+        prchs=findViewById(R.id.prchs);
         semester=findViewById(R.id.instructorName);
         revh=findViewById(R.id.review_heading);
         revb=findViewById(R.id.review_body);
         coursert=findViewById(R.id.courseRating);
         coursert.setText("⭐ "+Double.toString(book.getAverageRating())+" ("+String.valueOf(book.getNumberOfReviews())+") Ratings");
-
+        bookdesc.setText(book.getSmallDesc());
+        Log.d("ijj",book.getSmallDesc());
+        bookdetdesc.setText(book.getDetailedDesc());
         booktitle.setText(book.getTitle());
         bookauth.setText(book.getAuthor());
         field.setText(book.getField());
@@ -67,10 +79,23 @@ public class Book_OverView extends AppCompatActivity {
         int id=book.getId();
         Button addr=findViewById(R.id.addrev);
         addr.setOnClickListener(v -> addcomm());
+        prchs.setOnClickListener(v -> downloadPdf(book.getPdfUrl()));
         recyclerView=findViewById(R.id.reviewsRecyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         fetchReviews(id);
     }
+    private void downloadPdf(String pdfUrl) {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        intent.setDataAndType(Uri.parse(pdfUrl), "application/pdf");
+        intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
+
+        try {
+            startActivity(intent);
+        } catch (Exception e) {
+            Toast.makeText(getApplicationContext(), "No application to view PDF", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     private void fetchReviews(int bookId){
         ApiService apiService= Retrofitclient.getInstance().create(ApiService.class);
         Call<Bkk> call=apiService.getBookReviews(bookId);

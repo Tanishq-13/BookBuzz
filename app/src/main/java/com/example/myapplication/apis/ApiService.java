@@ -12,6 +12,7 @@ import java.util.List;
 
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -36,7 +37,7 @@ public interface ApiService {
 
     @Multipart
     @POST("books/upload")
-    Call<Void> uploadBook(
+    Call<ResponseBody> uploadBook(
             @Part MultipartBody.Part file,
             @Part("title") RequestBody title,
             @Part("author") RequestBody author,

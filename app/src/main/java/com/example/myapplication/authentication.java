@@ -8,12 +8,14 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import com.example.myapplication.apis.ApiService;
 import com.example.myapplication.apis.Retrofitclient;
 import com.example.myapplication.apis.requests.SignupRequest;
 import com.example.myapplication.apis.response.SignupResponse;
+import com.example.myapplication.launch_page.HomeActivity;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -22,7 +24,8 @@ import retrofit2.Response;
 public class authentication extends AppCompatActivity {
 
     private EditText username, email, password, phoneNumber, firstName, lastName;
-    private Button signUpButton, loginButton;
+    private LinearLayout loginButton;
+    private Button signUpButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,11 +41,11 @@ public class authentication extends AppCompatActivity {
         lastName = findViewById(R.id.last_name);
 
         signUpButton = findViewById(R.id.button3);
-        loginButton = findViewById(R.id.button);
+        loginButton = findViewById(R.id.haveaccount);
 
         // Redirect to Login Activity
         loginButton.setOnClickListener(v -> {
-            Intent intent = new Intent(authentication.this, MainActivity2.class);
+            Intent intent = new Intent(authentication.this, Login.class);
             startActivity(intent);
         });
 
@@ -75,7 +78,7 @@ public class authentication extends AppCompatActivity {
                     if (response.isSuccessful() && response.body() != null) {
                         // Handle successful API response
                         Toast.makeText(authentication.this, "User signed up via API", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), MainActivity2.class));  // Or another activity
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));  // Or another activity
                     } else {
                         // Handle API error response
                         Toast.makeText(authentication.this, "API Error: " + response.message(), Toast.LENGTH_SHORT).show();
