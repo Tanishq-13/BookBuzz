@@ -45,7 +45,7 @@
                 android:layout_width="247dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="TextViewhjjhjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjjj"
+                android:text="Thomas H. Cormen"
                 android:textColor="@color/black" />
         </LinearLayout>
     </LinearLayout>

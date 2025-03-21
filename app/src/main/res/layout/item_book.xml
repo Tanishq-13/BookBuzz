@@ -101,7 +101,7 @@
 
                         android:fontFamily="@font/inter"
                         android:paddingHorizontal="@dimen/_8sdp"
-                        android:paddingVertical="@dimen/_2sdp"
+                        android:paddingVertical="@dimen/_1sdp"
                         android:text="School of Computing"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_10sdp"
@@ -117,7 +117,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="end"
                         android:fontFamily="@font/inter"
-                        android:text="⭐ 3.8"
+                        android:text="⭐ 3.8 (5)"
                         android:textColor="#878383"
                         android:textSize="12sp"
                         app:layout_constraintBottom_toBottomOf="parent"
