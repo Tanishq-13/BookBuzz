@@ -41,7 +41,8 @@ public class launch_page extends Fragment {
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
     private RequestQueue requestQueue;
-    private String sem = null;
+    private String btechyear = "3";
+
     Calendar calendar = Calendar.getInstance();
 
     int year = calendar.get(Calendar.YEAR);
@@ -88,7 +89,7 @@ public class launch_page extends Fragment {
     }
 
     private void fetchBooks() {
-        String url = "http://192.168.29.159:9899/books/all";
+        String url = "http://10.22.8.233:9899/books/all";
         // Change this to your API URL
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -117,7 +118,7 @@ public class launch_page extends Fragment {
                                 Log.d("check img", jsonObject.getString("imageUrl"));
                                 booksAll.add(book);
 
-                                if (book.getSemester().equals(semester)) {
+                                if (book.getSemester().equals(btechyear)) {
                                     booksSemester.add(book);
                                 }
 

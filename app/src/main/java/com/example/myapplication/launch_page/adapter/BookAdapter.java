@@ -42,11 +42,17 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
         Book book = books.get(position);
         holder.title.setText(book.getTitle());
         holder.image.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        holder.bookRating.setText(book.getAuthor());
 //        Picasso.get()
 //                .load(book.getImageUrl())
 //                .into(holder.image);
 
         String rating = String.format("⭐ %.1f", book.getAverageRating());
+        if(book.getAverageRating()==0){
+            holder.author.setVisibility(View.INVISIBLE);
+        }
+        else
+            holder.author.setText(rating+" ("+book.getNumberOfReviews()+")");
         Log.d("check img and rev",book.getImageUrl()+" "+book.getAverageRating());
         Glide.with(holder.itemView.getContext())
                 .load(book.getImageUrl())
@@ -71,7 +77,7 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
     }
 
     static class BookViewHolder extends RecyclerView.ViewHolder {
-        TextView title, author;
+        TextView title, author,bookRating;
         ImageView image;
 
         public BookViewHolder(View itemView) {
@@ -79,6 +85,8 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
             title = itemView.findViewById(R.id.bookTitle);
             author = itemView.findViewById(R.id.bookRating);
             image = itemView.findViewById(R.id.bookImage);
+            bookRating=itemView.findViewById(R.id.bookauthor);
+//            bookRating=itemView.findViewById(R.id.)
         }
     }
 }
