@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -42,6 +43,7 @@ public class launch_page extends Fragment {
     private FirebaseAuth mAuth;
     private RequestQueue requestQueue;
     private String btechyear = "3";
+    private TextView vwAllSem,vwAllField,vwAll;
 
     Calendar calendar = Calendar.getInstance();
 
@@ -89,7 +91,7 @@ public class launch_page extends Fragment {
     }
 
     private void fetchBooks() {
-        String url = "http://10.22.8.233:9899/books/all";
+        String url = "http://10.22.14.83:9899/books/all";
         // Change this to your API URL
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
