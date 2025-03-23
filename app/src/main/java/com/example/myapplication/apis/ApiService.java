@@ -4,6 +4,7 @@ import com.example.myapplication.BookDetails.dataclass.Review;
 import com.example.myapplication.BookDetails.dataclass.ReviewRequest;
 import com.example.myapplication.apis.requests.LoginRequest;
 import com.example.myapplication.apis.requests.SignupRequest;
+import com.example.myapplication.apis.response.JwtResponseDto;
 import com.example.myapplication.apis.response.SignupResponse;
 import com.example.myapplication.launch_page.Bkk;
 import com.example.myapplication.launch_page.Book;
@@ -28,7 +29,7 @@ public interface ApiService {
     Call<SignupResponse> signup(@Body SignupRequest signupRequest);
 
     @POST("auth/v1/login")
-    Call<Response> login(@Body LoginRequest loginRequest);
+    Call<JwtResponseDto> login(@Body LoginRequest loginRequest);
     @GET("/books/{id}")
     Call<Bkk> getBookReviews(@Path("id") int bookId);
 
@@ -47,4 +48,5 @@ public interface ApiService {
             @Part("smallDescription") RequestBody smallDescription,
             @Part("detailedDescription") RequestBody detailedDescription
     );
+//    @POST("/")
 }
