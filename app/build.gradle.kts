@@ -78,6 +78,8 @@ dependencies {
     implementation("com.github.ome450901:SimpleRatingBar:1.5.1")
     implementation ("jp.wasabeef:glide-transformations:4.3.0")
     implementation("androidx.activity:activity:1.9.0")
+    implementation("androidx.security:security-crypto:1.0.0")
+    implementation("androidx.security:security-crypto:1.1.0-alpha06")
     annotationProcessor ("com.github.bumptech.glide:compiler:4.14.2")
     implementation ("com.github.bumptech.glide:glide:4.14.2")
     implementation ("com.android.volley:volley:1.2.1")
