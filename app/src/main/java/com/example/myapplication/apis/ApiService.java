@@ -3,6 +3,7 @@ package com.example.myapplication.apis;
 import com.example.myapplication.BookDetails.dataclass.Review;
 import com.example.myapplication.BookDetails.dataclass.ReviewRequest;
 import com.example.myapplication.apis.requests.LoginRequest;
+import com.example.myapplication.apis.requests.RefreshTokenRequest;
 import com.example.myapplication.apis.requests.SignupRequest;
 import com.example.myapplication.apis.response.JwtResponseDto;
 import com.example.myapplication.apis.response.SignupResponse;
@@ -35,6 +36,8 @@ public interface ApiService {
 
     @POST("/book/{book_id}/reviews")
     Call<Void> postReview(@Path("book_id") int bookId, @Body ReviewRequest reviewRequest);
+    @POST("auth/v1/refreshToken")
+    Call<JwtResponseDto> refreshAccessToken(@Body RefreshTokenRequest refreshTokenRequest);
 
     @Multipart
     @POST("books/upload")
