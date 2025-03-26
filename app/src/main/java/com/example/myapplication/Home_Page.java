@@ -46,6 +46,7 @@ public class Home_Page extends AppCompatActivity {
     private void refreshAccessToken(TokenManager tokenManager, ApiService apiService) {
         RefreshTokenRequest request = new RefreshTokenRequest(tokenManager.getRefreshToken());
         Call<JwtResponseDto> call = apiService.refreshAccessToken(request);
+        Log.d("refree",request.getToken());
 
         call.enqueue(new Callback<JwtResponseDto>() {
             @Override
