@@ -19,8 +19,10 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.auth0.android.jwt.JWT;
 import com.example.myapplication.R;
 import com.example.myapplication.launch_page.adapter.BookAdapter;
+import com.example.myapplication.token.TokenManager;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -38,6 +40,8 @@ public class launch_page extends Fragment {
     private BookAdapter bookAdapterSemester, bookAdapterCSE, bookAdapterAll;
     private List<Book> booksSemester, booksCSE, booksAll;
     private String semester;
+    private String username;
+    private String email;
     private String field = "Computer Science";  // Change as per user field
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
@@ -55,7 +59,7 @@ public class launch_page extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_launchhome, container, false);
-
+        extractUserInfoFromToken();
         requestQueue = Volley.newRequestQueue(requireContext());
 
         recyclerViewSemester = view.findViewById(R.id.recyclerViewBooks);
@@ -157,5 +161,22 @@ public class launch_page extends Fragment {
 
 
                 requestQueue.add(jsonArrayRequest);
+    }
+    private void extractUserInfoFromToken() {
+        TokenManager tokenManager = new TokenManager(requireContext());
+        String accessToken = tokenManager.getAccessToken(); // Fetch stored token
+
+        if (accessToken != null) {
+            try {
+                JWT jwt = new JWT(accessToken);
+                username = jwt.getClaim("sub").asString();  // Extract "sub" as username
+
+                Log.d("TokenInfo", "Username: " + username);
+            } catch (Exception e) {
+                Log.e("TokenError", "Error decoding token: ", e);
+            }
+        } else {
+            Log.e("TokenError", "No token found!");
+        }
     }
 }

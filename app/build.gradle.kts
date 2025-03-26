@@ -84,6 +84,7 @@ dependencies {
     implementation ("com.github.bumptech.glide:glide:4.14.2")
     implementation ("com.android.volley:volley:1.2.1")
     implementation("com.intuit.ssp:ssp-android:1.1.0")
+    implementation("com.auth0.android:jwtdecode:2.0.2")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
