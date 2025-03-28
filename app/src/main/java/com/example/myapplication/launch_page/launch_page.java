@@ -1,5 +1,8 @@
 package com.example.myapplication.launch_page;
 
+import static android.content.Context.MODE_PRIVATE;
+
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,6 +24,10 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
 import com.auth0.android.jwt.JWT;
 import com.example.myapplication.R;
+import com.example.myapplication.apis.ApiClient;
+import com.example.myapplication.apis.ApiService;
+import com.example.myapplication.apis.Retrofitclient;
+import com.example.myapplication.apis.response.user_details;
 import com.example.myapplication.launch_page.adapter.BookAdapter;
 import com.example.myapplication.token.TokenManager;
 import com.google.firebase.auth.FirebaseAuth;
@@ -33,6 +40,9 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
 
 public class launch_page extends Fragment {
 
@@ -61,7 +71,7 @@ public class launch_page extends Fragment {
         View view = inflater.inflate(R.layout.fragment_launchhome, container, false);
         extractUserInfoFromToken();
         requestQueue = Volley.newRequestQueue(requireContext());
-
+        getName();
         recyclerViewSemester = view.findViewById(R.id.recyclerViewBooks);
         recyclerViewCSE = view.findViewById(R.id.recyclerViewBooks2);
         recyclerViewAll = view.findViewById(R.id.recyclerViewBooks21);
@@ -178,5 +188,41 @@ public class launch_page extends Fragment {
         } else {
             Log.e("TokenError", "No token found!");
         }
+    }
+    private void getName(){
+        ApiService apiService= ApiClient.getClient().create(ApiService.class);
+        Call<user_details> call=apiService.getUserDetails(username.trim());
+        Log.d("userName",username);
+        call.enqueue(new Callback<user_details>() {
+            @Override
+            public void onResponse(Call<user_details> call, retrofit2.Response<user_details> response) {
+                if(response.isSuccessful()){
+                    user_details userDetails=response.body();
+                    String firstName=userDetails.getFirstName();
+                    String lastName=userDetails.getLastName();
+                    SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserPrefs", MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("firstName", firstName);
+                    editor.putString("lastName", lastName);
+                    editor.apply();
+                    Log.d("UserInfo", "Name stored: " + firstName + " " + lastName);
+                }
+                else{
+                    try {
+                        String errorResponse = response.errorBody().string();
+                        Log.e("UserInfo", "Failed to fetch user details. Response Code: " + response.code());
+                        Log.e("UserInfo", "Response body: " + errorResponse);
+                    } catch (Exception e) {
+                        Log.e("UserInfo", "Error reading errorBody", e);
+                    }
+
+                }
+            }
+
+            @Override
+            public void onFailure(Call<user_details> call, Throwable throwable) {
+                Log.e("UserInfo", "API call failed: " + throwable.getMessage());
+            }
+        });
     }
 }

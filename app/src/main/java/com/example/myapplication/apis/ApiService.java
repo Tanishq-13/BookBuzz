@@ -7,6 +7,7 @@ import com.example.myapplication.apis.requests.RefreshTokenRequest;
 import com.example.myapplication.apis.requests.SignupRequest;
 import com.example.myapplication.apis.response.JwtResponseDto;
 import com.example.myapplication.apis.response.SignupResponse;
+import com.example.myapplication.apis.response.user_details;
 import com.example.myapplication.launch_page.Bkk;
 import com.example.myapplication.launch_page.Book;
 
@@ -33,6 +34,9 @@ public interface ApiService {
     Call<JwtResponseDto> login(@Body LoginRequest loginRequest);
     @GET("/books/{id}")
     Call<Bkk> getBookReviews(@Path("id") int bookId);
+
+    @GET("users/{user_id}")
+    Call<user_details> getUserDetails(@Path("user_id") String user_id);
 
     @POST("/book/{book_id}/reviews")
     Call<Void> postReview(@Path("book_id") int bookId, @Body ReviewRequest reviewRequest);
