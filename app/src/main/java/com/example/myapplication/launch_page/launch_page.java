@@ -140,7 +140,7 @@ public class launch_page extends Fragment {
     }
 
     private void fetchBooks() {
-        String url = "http://10.22.10.109:9899/books/all";
+        String url = "http://10.22.10.143:9899/books/all";
         // Change this to your API URL
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,

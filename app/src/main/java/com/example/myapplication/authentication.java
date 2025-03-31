@@ -11,11 +11,13 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.myapplication.apis.ApiClient;
 import com.example.myapplication.apis.ApiService;
 import com.example.myapplication.apis.Retrofitclient;
 import com.example.myapplication.apis.requests.SignupRequest;
 import com.example.myapplication.apis.response.SignupResponse;
 import com.example.myapplication.launch_page.HomeActivity;
+import com.example.myapplication.token.TokenManager;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -68,7 +70,7 @@ public class authentication extends AppCompatActivity {
             SignupRequest signupRequest = new SignupRequest(userName, userPassword, userEmail, userPhone, userFirstName, userLastName);
 
             // Retrofit API call
-            ApiService apiService = Retrofitclient.getInstance().create(ApiService.class);
+            ApiService apiService = ApiClient.getClient().create(ApiService.class);
             Call<SignupResponse> call = apiService.signup(signupRequest);
 
             // Make the API call
@@ -76,16 +78,24 @@ public class authentication extends AppCompatActivity {
                 @Override
                 public void onResponse(Call<SignupResponse> call, Response<SignupResponse> response) {
                     if (response.isSuccessful() && response.body() != null) {
-                        // Handle successful API response
-                        Toast.makeText(authentication.this, "User signed up via API", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));  // Or another activity
+                        // Get the access and refresh tokens from response
+                        String accessToken = response.body().getAccessToken();  // Ensure API returns this
+                        String refreshToken = response.body().getToken(); // Ensure API returns this
+                        Log.d("acess", String.valueOf(response));
+                        if (accessToken != null && refreshToken != null) {
+                            TokenManager tokenManager = new TokenManager(authentication.this);
+                            tokenManager.saveTokens(accessToken, refreshToken);
+                        } else {
+                            Log.e("Signup", "Tokens missing in response");
+                        }
+
+                        Toast.makeText(authentication.this, "User signed up successfully!", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(getApplicationContext(), HomeActivity.class));
                     } else {
-                        // Handle API error response
                         try {
-                            // Get full error response from server
                             String errorBody = response.errorBody() != null ? response.errorBody().string() : "Unknown error";
-                            Log.e("API_ERROR", "Code: " + response.code() + ", Body: " + errorBody);
-                            Toast.makeText(authentication.this, "API Error: " + errorBody, Toast.LENGTH_SHORT).show();
+                            Log.e("Signup", "Error Code: " + response.code() + ", Body: " + errorBody);
+                            Toast.makeText(authentication.this, "Signup Failed: " + errorBody, Toast.LENGTH_SHORT).show();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
