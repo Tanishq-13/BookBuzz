@@ -59,7 +59,7 @@ public class authentication extends AppCompatActivity {
             String userLastName = lastName.getText().toString().trim();
 
             // Validate input fields (email and password)
-            if (userEmail.isEmpty() || userPassword.isEmpty() || userName.isEmpty()) {
+            if ( userPassword.isEmpty() || userName.isEmpty()) {
                 Toast.makeText(authentication.this, "Please fill in all the fields", Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -81,7 +81,14 @@ public class authentication extends AppCompatActivity {
                         startActivity(new Intent(getApplicationContext(), HomeActivity.class));  // Or another activity
                     } else {
                         // Handle API error response
-                        Toast.makeText(authentication.this, "API Error: " + response.message(), Toast.LENGTH_SHORT).show();
+                        try {
+                            // Get full error response from server
+                            String errorBody = response.errorBody() != null ? response.errorBody().string() : "Unknown error";
+                            Log.e("API_ERROR", "Code: " + response.code() + ", Body: " + errorBody);
+                            Toast.makeText(authentication.this, "API Error: " + errorBody, Toast.LENGTH_SHORT).show();
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                     }
                 }
 

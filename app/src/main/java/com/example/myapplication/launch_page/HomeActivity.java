@@ -5,6 +5,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import com.example.myapplication.R;
+import com.example.myapplication.launch_page.fragmentss.ProfileFragment;
 import com.example.myapplication.launch_page.fragmentss.UploadFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -32,6 +33,9 @@ public class HomeActivity extends AppCompatActivity {
             }
             if (item.getItemId() == R.id.home) {
                 selectedFragment = new launch_page();
+            }
+            if(item.getItemId()==R.id.work){
+                selectedFragment=new ProfileFragment();
             }
 //            // Add other fragments for different tabs if needed
 //

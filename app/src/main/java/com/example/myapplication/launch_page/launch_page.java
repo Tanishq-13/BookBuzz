@@ -2,6 +2,7 @@ package com.example.myapplication.launch_page;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -30,6 +31,8 @@ import com.example.myapplication.apis.Retrofitclient;
 import com.example.myapplication.apis.response.user_details;
 import com.example.myapplication.launch_page.adapter.BookAdapter;
 import com.example.myapplication.token.TokenManager;
+import com.example.myapplication.viewall.AllBooksActivity;
+import com.example.myapplication.viewall.BookRepository;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,6 +40,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -51,7 +55,7 @@ public class launch_page extends Fragment {
     private List<Book> booksSemester, booksCSE, booksAll;
     private String semester;
     private String username;
-    private String email;
+    private String email="22351@iiitu.ac.in";
     private String field = "Computer Science";  // Change as per user field
     private FirebaseUser currentUser;
     private FirebaseAuth mAuth;
@@ -75,6 +79,35 @@ public class launch_page extends Fragment {
         recyclerViewSemester = view.findViewById(R.id.recyclerViewBooks);
         recyclerViewCSE = view.findViewById(R.id.recyclerViewBooks2);
         recyclerViewAll = view.findViewById(R.id.recyclerViewBooks21);
+        vwAll=view.findViewById(R.id.Desc212);
+        vwAllField=view.findViewById(R.id.Desc22);
+        fetchBooks();
+
+
+        email=email.trim();
+        if(email.endsWith("iiitu.ac.in")){
+            if(email.charAt(2)=='1' || email.charAt(2)=='3'){
+                field="School of Computing";
+                Log.d("checklgg",email);
+            }
+            else{
+                field="School of Electronics";
+            }
+        }
+        semester=calcSem(email);
+        Log.d("checklgg",semester);
+
+        vwAll.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AllBooksActivity.class);
+            intent.putExtra("showAllBooks", true);
+            startActivity(intent);
+        });
+
+        vwAllField.setOnClickListener(v->{
+            Intent intent=new Intent(getActivity(),AllBooksActivity.class);
+            intent.putExtra("showSpecificField","School of Computing");
+            startActivity(intent);
+        });
 
         booksSemester = new ArrayList<>();
         booksCSE = new ArrayList<>();
@@ -92,12 +125,14 @@ public class launch_page extends Fragment {
         recyclerViewCSE.setAdapter(bookAdapterCSE);
         recyclerViewAll.setAdapter(bookAdapterAll);
 
-        fetchBooks();
 
         return view;
     }
 
-    private String calcSem(String email, int m, int y) {
+    private String calcSem(String email) {
+        LocalDate currentDate = LocalDate.now();  // Get current date
+        int m = currentDate.getMonthValue();      // Extract month (1-12)
+        int y = currentDate.getYear();
         int c = 2000 + (email.charAt(0) - '0') * 10 + (email.charAt(1) - '0');
         int yr = y - c;
         int s = (m >= 6) ? yr * 2 + 1 : yr * 2;
@@ -133,6 +168,7 @@ public class launch_page extends Fragment {
 
                                 Log.d("check img", jsonObject.getString("imageUrl"));
                                 booksAll.add(book);
+                                BookRepository.getInstance().setBooks(booksAll);
 
                                 if (book.getSemester().equals(btechyear)) {
                                     booksSemester.add(book);
@@ -180,7 +216,7 @@ public class launch_page extends Fragment {
             try {
                 JWT jwt = new JWT(accessToken);
                 username = jwt.getClaim("sub").asString();  // Extract "sub" as username
-
+                email=username;
                 Log.d("TokenInfo", "Username: " + username);
             } catch (Exception e) {
                 Log.e("TokenError", "Error decoding token: ", e);
