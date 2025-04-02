@@ -65,7 +65,7 @@ Below is the **authentication flow** detailing user signup, login, token issuanc
 
 ## 🗄️ Database Design (MySQL)  
 
-The **ER Diagram** for the Authorization Service is shown below:  
+The **ER Diagram** for the Authorization Service is showwn below:  
 
 ![ER Diagram](ER%20diagram%20of%20MYSQL.webp)  
 
