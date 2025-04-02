@@ -13,7 +13,7 @@ This application ensures that only authorized **students and teachers (using ins
 ## 🛡️ Authorization Service  
 
 ### Purpose  
-The **Authorization Service** is a critical component that manages:  
+The **Authorization Service** is a criticalk component that manages:  
 - **Secure login** for students and teachers (via institute email).  
 - **Access control** for uploading, downloading, and reviewing materials.  
 - **Token-based authentication** using JWT and refresh tokens.  
