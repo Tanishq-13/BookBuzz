@@ -11,12 +11,146 @@
         android:orientation="vertical"
         android:background="@color/white">
 
+        <HorizontalScrollView
+            android:id="@+id/hrz"
+            android:layout_marginStart="@dimen/_8sdp"
+            android:layout_width="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:layout_height="wrap_content"
+            android:fillViewport="true"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@color/white"
+                android:paddingVertical="@dimen/_8sdp">
+
+                <LinearLayout
+                    android:id="@+id/coursess"
+                    android:layout_width="@dimen/_95sdp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:background="@drawable/background_edu"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_42sdp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:padding="@dimen/_14sdp"
+                        android:background="@drawable/circlebg"
+                        android:src="@drawable/book_open_svgrepo_com"
+                        android:contentDescription="Courses"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Semester"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:layout_marginTop="@dimen/_6sdp" />
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="12 Available"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="#797D7F"
+                        android:fontFamily="@font/inter" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/newss"
+                    android:layout_width="@dimen/_95sdp"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_16sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:background="@drawable/background_edu"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_42sdp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:padding="@dimen/_12sdp"
+
+                        android:background="@drawable/newsbg"
+                        android:src="@drawable/news_paper_svgrepo_com_2"
+                        android:contentDescription="Courses"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Stream"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:layout_marginTop="@dimen/_6sdp" />
+                    <TextView
+                        android:id="@+id/streamnumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="4 Updates"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="#797D7F"
+                        android:fontFamily="@font/inter" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/calci"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_15sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:background="@drawable/background_edu"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/_42sdp"
+                        android:layout_height="@dimen/_42sdp"
+                        android:background="@drawable/calculator_bg"
+
+                        android:contentDescription="Courses"
+                        android:padding="@dimen/_12sdp"
+                        android:src="@drawable/formula_svgrepo_com"
+                        app:tint="@color/white" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="All"
+                        android:textSize="@dimen/_12ssp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:layout_marginTop="@dimen/_6sdp" />
+                    <TextView
+                        android:id="@+id/allnumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Medical Tools"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:textSize="@dimen/_10ssp"
+                        android:textColor="#797D7F"
+                        android:fontFamily="@font/inter" />
+                </LinearLayout>
+            </LinearLayout>
+        </HorizontalScrollView>
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/exploresem"
             android:layout_width="match_parent"
             android:layout_marginBottom="@dimen/_8sdp"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hrz"
             android:paddingHorizontal="@dimen/_8sdp"
             android:layout_marginTop="@dimen/_12sdp"
             android:layout_height="wrap_content">

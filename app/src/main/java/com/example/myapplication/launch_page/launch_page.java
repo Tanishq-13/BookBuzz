@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -53,6 +54,7 @@ public class launch_page extends Fragment {
     private RecyclerView recyclerViewSemester, recyclerViewCSE, recyclerViewAll;
     private BookAdapter bookAdapterSemester, bookAdapterCSE, bookAdapterAll;
     private List<Book> booksSemester, booksCSE, booksAll;
+    LinearLayout ns,crs,clc;
     private String semester;
     private String username;
     private String email="22351@iiitu.ac.in";
@@ -106,6 +108,24 @@ public class launch_page extends Fragment {
         vwAllField.setOnClickListener(v->{
             Intent intent=new Intent(getActivity(),AllBooksActivity.class);
             intent.putExtra("showSpecificField","School of Computing");
+            startActivity(intent);
+        });
+        ns=view.findViewById(R.id.newss);
+        ns.setOnClickListener(v -> {
+            Intent intent=new Intent(getActivity(),AllBooksActivity.class);
+            intent.putExtra("showSpecificField","School of Computing");
+            startActivity(intent);
+        });
+
+        crs=view.findViewById(R.id.coursess);
+//        crs.setOnClickListener(v -> {
+//            Intent intent=new
+//        });
+
+        clc=view.findViewById(R.id.calci);
+        clc.setOnClickListener(v -> {
+            Intent intent = new Intent(getActivity(), AllBooksActivity.class);
+            intent.putExtra("showAllBooks", true);
             startActivity(intent);
         });
 
