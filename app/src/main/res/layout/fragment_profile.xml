@@ -1,0 +1,544 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:background="@color/backgroundcolor"
+    android:layout_height="match_parent"
+    tools:context=".launch_page.fragmentss.ProfileFragment">
+
+    <!-- Add this to your layout -->
+
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!--            <com.google.android.material.appbar.AppBarLayout-->
+            <!--                android:id="@+id/profiletoolbar_container"-->
+            <!--                android:layout_width="match_parent"-->
+            <!--                android:background="@drawable/flag_transparent"-->
+            <!--                android:layout_height="wrap_content"-->
+            <!--                app:layout_constraintEnd_toEndOf="parent"-->
+            <!--                app:layout_constraintStart_toStartOf="parent"-->
+            <!--                app:layout_constraintTop_toTopOf="parent">-->
+
+            <!--&lt;!&ndash;                <androidx.appcompat.widget.Toolbar&ndash;&gt;-->
+            <!--&lt;!&ndash;                    android:id="@+id/profiletoolbar"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    app:title="Profile"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    app:navigationIcon="@drawable/arrow_bk"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    app:titleTextColor="@color/unselected"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    app:subtitleTextColor="@color/white"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    app:subtitleTextAppearance="@color/white"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    android:layout_width="match_parent"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    android:layout_weight="1"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    android:layout_height="?attr/actionBarSize"&ndash;&gt;-->
+            <!--&lt;!&ndash;                    android:background="@drawable/flag_transparent">&ndash;&gt;-->
+
+            <!--&lt;!&ndash;                </androidx.appcompat.widget.Toolbar>&ndash;&gt;-->
+
+            <!--            </com.google.android.material.appbar.AppBarLayout>-->
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Account"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/inter_semibold"
+
+                android:padding="@dimen/_8ssp"/>
+            <LinearLayout
+                android:id="@+id/intenttoaboutme2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="@dimen/_8sdp"
+                android:layout_marginLeft="@dimen/_8sdp"
+                android:elevation="@dimen/_1sdp"
+                android:background="@drawable/backgroundios"
+                android:orientation="horizontal"
+                android:padding="@dimen/_10ssp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/circularImageView"
+                        android:layout_width="@dimen/_60sdp"
+                        android:layout_height="@dimen/_60sdp"
+                        android:layout_gravity="center"
+                        android:src="@drawable/avatarplaceholder" />
+
+                    <FrameLayout
+                        android:id="@+id/verifieduser2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_gravity="center">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:layout_gravity="bottom|end"
+                            android:layout_marginBottom="0dp"
+                            android:elevation="10dp"
+                            android:layout_marginEnd="0dp"
+                            android:src="@drawable/greenlogo" />
+
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_weight="1"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="@dimen/_8ssp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/prefixselecterfromuser"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/inter_semibold"
+                            android:text="Dr. "
+                            android:visibility="gone"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            android:id="@+id/user_name_dr"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/inter_semibold"
+                            android:text="Loading.."
+                            android:textSize="@dimen/_12sdp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+
+                        <TextView
+                            android:id="@+id/user_interest_dr"
+                            android:layout_width="match_parent"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:textColor="#979A9A"
+                            android:fontFamily="@font/inter"
+                            android:text="Loading.."
+                            android:textSize="@dimen/_11sdp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/user_email_dr"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textStyle="bold"
+                            android:layout_marginTop="@dimen/_1sdp"
+                            android:visibility="gone"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/inter"
+                            android:text="Loading.."
+                            android:textSize="@dimen/_10ssp" />
+
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_marginVertical="@dimen/_5ssp"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:paddingVertical="@dimen/_2ssp"
+                        android:background="@drawable/smaller_block"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/user_phone_dr2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="@dimen/_5ssp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:layout_marginHorizontal="@dimen/_2ssp"
+                            android:fontFamily="@font/inter"
+                            android:text="Loading.."
+                            android:textSize="@dimen/_10ssp" />
+
+                        <ImageView
+                            android:layout_marginStart="@dimen/_20ssp"
+                            android:layout_width="@dimen/_12ssp"
+                            android:layout_height="match_parent"
+                            android:src="@drawable/infosis"
+                            android:layout_marginEnd="@dimen/_5ssp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/personal_info"
+                android:visibility="gone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="@dimen/_10ssp"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginVertical="@dimen/_2ssp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="10dp"
+                    android:paddingVertical="8dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:paddingHorizontal="@dimen/_5sdp"/>
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:gravity="center_vertical"
+                        android:paddingHorizontal="@dimen/_5sdp"
+                        android:layout_height="match_parent"
+                        android:textSize="@dimen/_14ssp"
+                        android:text="Customize Profile"
+                        android:fontFamily="@font/inter"
+                        android:textStyle="bold"
+                        android:textColor="@color/unselected"/>
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:src="@drawable/arrowright"/>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Features"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/inter_semibold"
+
+                android:padding="@dimen/_8ssp"/>
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:paddingHorizontal="@dimen/_8ssp">
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/contact_us"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="@dimen/_20ssp"
+                    android:paddingLeft="@dimen/_8ssp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:layout_gravity="fill_horizontal"
+                    android:background="@drawable/backgroundios"
+
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/img"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/envelope_note_svgrepo_com"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/cntus"/>
+                    <TextView
+                        android:id="@+id/cntus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:textSize="@dimen/_13sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        app:layout_constraintLeft_toRightOf="@id/img"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="Contact Us"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/settings_layout"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="@dimen/_20ssp"
+                    android:paddingLeft="@dimen/_8ssp"
+                    android:layout_gravity="fill_horizontal"
+
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:background="@drawable/backgroundios"
+
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/img1"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/settings_configuration_svgrepo_com"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/cntus1"/>
+                    <TextView
+                        android:id="@+id/cntus1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:textSize="@dimen/_13sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        app:layout_constraintLeft_toRightOf="@id/img1"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="Settings"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/community"
+                    android:layout_width="wrap_content"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:paddingRight="@dimen/_20ssp"
+                    android:paddingLeft="@dimen/_8ssp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:layout_gravity="fill_horizontal"
+                    android:background="@drawable/backgroundios"
+
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/img2"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/telegram_svgrepo_com"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/cntus2"/>
+                    <TextView
+                        android:id="@+id/cntus2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:textSize="@dimen/_13sdp"
+
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        app:layout_constraintLeft_toRightOf="@id/img2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="Community"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/referfriend"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="@dimen/_20ssp"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:paddingLeft="@dimen/_8ssp"
+                    android:layout_gravity="fill_horizontal"
+
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:background="@drawable/backgroundios"
+
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/img3"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/share_svgrepo_com"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/cntus3"/>
+                    <TextView
+                        android:id="@+id/cntus3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:textSize="@dimen/_13sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        app:layout_constraintLeft_toRightOf="@id/img3"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="Refer a frined"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </GridLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Others"
+                android:textSize="@dimen/_14sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:padding="@dimen/_8ssp"/>
+
+            <GridLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:columnCount="2"
+                android:rowCount="2"
+                android:paddingHorizontal="@dimen/_8ssp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/contact_us_2"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="@dimen/_20ssp"
+                    android:paddingLeft="@dimen/_8ssp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:layout_gravity="fill_horizontal"
+                    android:background="@drawable/backgroundios"
+
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img_2"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/order_svgrepo_com"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/cntus_2"/>
+
+                    <TextView
+                        android:id="@+id/cntus_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:textSize="@dimen/_13sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        app:layout_constraintLeft_toRightOf="@id/img_2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="Report issue"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/settings_layout_2"
+                    android:layout_width="wrap_content"
+                    android:paddingRight="@dimen/_20ssp"
+                    android:paddingLeft="@dimen/_8ssp"
+                    android:layout_gravity="fill_horizontal"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    android:paddingVertical="@dimen/_10sdp"
+                    android:background="@drawable/backgroundios"
+
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/img1_2"
+                        android:layout_width="@dimen/_20sdp"
+                        android:layout_height="@dimen/_20sdp"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:src="@drawable/policy_term_and_condition_term_svgrepo_com"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintRight_toLeftOf="@+id/cntus1_2"/>
+
+                    <TextView
+                        android:id="@+id/cntus1_2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:textSize="@dimen/_13sdp"
+                        android:layout_marginLeft="@dimen/_10sdp"
+                        app:layout_constraintLeft_toRightOf="@id/img1_2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        android:text="T&amp;C"/>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </GridLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/referfriend_2"
+                android:layout_width="match_parent"
+                android:paddingRight="@dimen/_20ssp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:paddingLeft="@dimen/_8ssp"
+                android:layout_gravity="fill_horizontal"
+                android:layout_marginLeft="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_10sdp"
+                android:background="@drawable/backgroundios"
+
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/img3_2"
+                    android:layout_width="@dimen/_20sdp"
+                    android:layout_height="@dimen/_20sdp"
+
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/login_svgrepo_com"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintRight_toLeftOf="@+id/cntus3_2"/>
+
+                <TextView
+                    android:id="@+id/cntus3_2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_semibold"
+                    android:textSize="@dimen/_13sdp"
+                    android:layout_marginLeft="@dimen/_10sdp"
+                    app:layout_constraintLeft_toRightOf="@id/img3_2"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:text="Log Out"/>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
