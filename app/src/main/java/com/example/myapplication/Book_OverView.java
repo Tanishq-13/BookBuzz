@@ -3,20 +3,28 @@ package com.example.myapplication;
 import static androidx.core.content.ContentProviderCompat.requireContext;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.myapplication.BookDetails.adapter.OverviewAdapter;
 import com.example.myapplication.BookDetails.dataclass.Review;
 import com.example.myapplication.BookDetails.dataclass.ReviewRequest;
@@ -56,9 +64,42 @@ public class Book_OverView extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_book_details);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR);
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            Window window = getWindow();
+            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+            window.setStatusBarColor(ContextCompat.getColor(this, R.color.white));
+            window.setNavigationBarColor(ContextCompat.getColor(this, R.color.white));
+        }
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            View decorView = getWindow().getDecorView();
+            decorView.setSystemUiVisibility(decorView.getSystemUiVisibility() | View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR);
+        }
+        SharedPreferences sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String firstName = sharedPreferences.getString("firstName", "");
+        String lastName = sharedPreferences.getString("lastName", "");
+        studentName=firstName+" "+lastName;
         book= (Book) getIntent().getSerializableExtra("book");
+        sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+        String username = sharedPreferences.getString("username", "");
+        email=username;
         booktitle=findViewById(R.id.courseTitle);
         img=findViewById(R.id.topImageView);
+
+        Glide.with(img)
+                .load(book.getImageUrl())
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .dontTransform() // Avoids unnecessary transformations
+                .dontAnimate() // Prevents animations that may cause issues
+                .placeholder(R.drawable.book_svgrepo_com) // Temporary image while loading
+                .error(R.drawable.book_svgrepo_com) // Shows error image if load fails
+                .into(img);
+
         bookauth=findViewById(R.id.bookauth);
         bookdetdesc=findViewById(R.id.courseDescription1);
         bookdesc=findViewById(R.id.courseDescription);

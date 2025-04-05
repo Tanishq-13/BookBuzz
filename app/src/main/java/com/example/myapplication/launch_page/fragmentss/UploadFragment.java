@@ -76,7 +76,7 @@ public class UploadFragment extends Fragment {
         submitButton = view.findViewById(R.id.Submit); // Add this button in XML
 
         // Set up Spinner
-        List<String> schoolList = Arrays.asList("School of Computing", "School of Electronics", "School of Basic Science");
+        List<String> schoolList = Arrays.asList("School Of Computing", "School Of Electronics", "School Of Basic Science");
         ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(), android.R.layout.simple_spinner_item, schoolList);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         schoolSpinner.setAdapter(adapter);

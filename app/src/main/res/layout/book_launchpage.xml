@@ -5,6 +5,8 @@
     android:orientation="vertical"
     android:background="@drawable/background_edu"
     android:padding="@dimen/_8sdp"
+    android:layout_marginTop="@dimen/_4sdp"
+    android:layout_marginRight="@dimen/_8sdp"
     android:layout_height="wrap_content">
 
 
@@ -20,7 +22,6 @@
             android:textColor="#000000"
             android:textSize="@dimen/_12sdp"
             android:layout_marginTop="@dimen/_2sdp"
-            android:layout_gravity="center_horizontal"
             android:ellipsize="end"
             android:maxLines="1"
             android:fontFamily="@font/inter_semibold"
@@ -44,6 +45,7 @@
             android:layout_marginBottom="8dp"
             android:layout_marginTop="@dimen/_4sdp"
             android:text="⭐ 3.8 (5)"
+            android:visibility="invisible"
             android:textColor="#626567 "
             android:fontFamily="@font/inter_semibold"
             android:textSize="@dimen/_10sdp" />

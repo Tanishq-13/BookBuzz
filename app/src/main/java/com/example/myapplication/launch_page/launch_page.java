@@ -2,6 +2,7 @@ package com.example.myapplication.launch_page;
 
 import static android.content.Context.MODE_PRIVATE;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -63,7 +64,7 @@ public class launch_page extends Fragment {
     private FirebaseAuth mAuth;
     private RequestQueue requestQueue;
     private String btechyear = "3";
-    private TextView vwAllSem,vwAllField,vwAll;
+    private TextView vwAllSem,vwAllField,vwAll,desc1;
 
     Calendar calendar = Calendar.getInstance();
 
@@ -84,12 +85,20 @@ public class launch_page extends Fragment {
         vwAll=view.findViewById(R.id.Desc212);
         vwAllField=view.findViewById(R.id.Desc22);
         fetchBooks();
-
-
+        desc1=view.findViewById(R.id.Desc1);
+        if(email.charAt(2)=='1'){
+            desc1.setText("CSE TextBooks");
+        }
+        else if(email.charAt(2)=='3'){
+            desc1.setText("IT TextBooks");
+        }
+        else{
+            desc1.setText("ECE TextBooks");
+        }
         email=email.trim();
         if(email.endsWith("iiitu.ac.in")){
             if(email.charAt(2)=='1' || email.charAt(2)=='3'){
-                field="School of Computing";
+                field="School Of Computing";
                 Log.d("checklgg",email);
             }
             else{
@@ -107,7 +116,7 @@ public class launch_page extends Fragment {
 
         vwAllField.setOnClickListener(v->{
             Intent intent=new Intent(getActivity(),AllBooksActivity.class);
-            intent.putExtra("showSpecificField","School of Computing");
+            intent.putExtra("showSpecificField",field);
             startActivity(intent);
         });
         ns=view.findViewById(R.id.newss);
@@ -160,7 +169,7 @@ public class launch_page extends Fragment {
     }
 
     private void fetchBooks() {
-        String url = "http://10.22.10.143:9899/books/all";
+        String url = "http://10.22.1.63:9899/books/all";
         // Change this to your API URL
 
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(Request.Method.GET, url, null,
@@ -190,7 +199,7 @@ public class launch_page extends Fragment {
                                 booksAll.add(book);
                                 BookRepository.getInstance().setBooks(booksAll);
 
-                                if (book.getSemester().equals(btechyear)) {
+                                if (book.getSemester().equals(semester)) {
                                     booksSemester.add(book);
                                 }
 
@@ -238,6 +247,10 @@ public class launch_page extends Fragment {
                 username = jwt.getClaim("sub").asString();  // Extract "sub" as username
                 email=username;
                 Log.d("TokenInfo", "Username: " + username);
+                SharedPreferences sharedPreferences = requireContext().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("username", username);
+                editor.apply();
             } catch (Exception e) {
                 Log.e("TokenError", "Error decoding token: ", e);
             }

@@ -48,11 +48,13 @@ public class BookAdapter extends RecyclerView.Adapter<BookAdapter.BookViewHolder
 //                .into(holder.image);
 
         String rating = String.format("⭐ %.1f", book.getAverageRating());
-        if(book.getAverageRating()==0){
-            holder.author.setVisibility(View.INVISIBLE);
-        }
-        else
+        if(book.getAverageRating()!=0){
+            holder.author.setVisibility(View.VISIBLE);
             holder.author.setText(rating+" ("+book.getNumberOfReviews()+")");
+        }
+        else{
+
+        }
         Log.d("check img and rev",book.getImageUrl()+" "+book.getAverageRating());
         Glide.with(holder.itemView.getContext())
                 .load(book.getImageUrl())

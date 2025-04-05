@@ -8,7 +8,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
-    private static final String BASE_URL = "http://10.22.10.143:9898/";
+    private static final String BASE_URL = "http://10.22.1.63:9898/";
 
     private static Retrofit retrofit = null;
     public static Retrofit getClient2(TokenManager tokenManager, ApiService apiService) {
@@ -16,7 +16,7 @@ public class ApiClient {
                 .addInterceptor(new AuthInterceptor(tokenManager, apiService))
                 .build();
         return new Retrofit.Builder()
-                .baseUrl("http://10.22.10.143:9898/")
+                .baseUrl("http://10.22.1.63:9898/")
                 .client(client)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

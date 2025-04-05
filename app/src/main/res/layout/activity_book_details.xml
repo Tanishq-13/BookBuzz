@@ -23,13 +23,13 @@
             <!-- Top Image Section -->
             <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="250dp">
+                android:layout_height="wrap_content">
 
                 <ImageView
                     android:id="@+id/topImageView"
                     android:layout_width="@dimen/_200sdp"
                     android:layout_gravity="center_horizontal"
-                    android:layout_height="250dp"
+                    android:layout_height="350dp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/book_svgrepo_com" />
                 />
