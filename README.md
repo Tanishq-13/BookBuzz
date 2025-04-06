@@ -94,7 +94,7 @@ Only verified institute users can:
    - Allows/denies actions based on authentication
 
 📸 Sequence Diagram:  
-![Authorization Service UML](auth_service_uml.png)
+![Authorization Service UML](LLD%20of%20Authorization%20Service.webp)
 
 ---
 
