@@ -87,7 +87,7 @@ public class Book_OverView extends AppCompatActivity {
         book= (Book) getIntent().getSerializableExtra("book");
         sharedPreferences = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
-        email=username;
+        email=username;//
         booktitle=findViewById(R.id.courseTitle);
         img=findViewById(R.id.topImageView);
 
