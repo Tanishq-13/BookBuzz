@@ -74,8 +74,6 @@ public class ProfileFragment extends Fragment {
 //        setupToolbar(rootView);
         setupWindowColors();
 
-
-
         return rootView;
     }
 
